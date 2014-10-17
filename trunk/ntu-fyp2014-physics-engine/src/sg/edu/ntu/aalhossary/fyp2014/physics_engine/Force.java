@@ -5,6 +5,10 @@ public class Force extends Vector3D {
 		super();
 	}
 	
+	public Force (Vector3D v){
+		super(v);
+	}
+	
 	public Force (double x, double y, double z){
 		super(x,y,z);
 	}

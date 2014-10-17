@@ -1,53 +1,55 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine;
+
+import sg.edu.ntu.aalhossary.fyp2014.physics_engine.AbstractParticle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
 public class ForceRegistry {
-	private HashMap<Particle, ArrayList<Force>> registrations = new HashMap<Particle,ArrayList<Force>>();
+	private HashMap<AbstractParticle, ArrayList<Force>> registrations = new HashMap<AbstractParticle,ArrayList<Force>>();
 	
-	public void add(Particle particle, Force force) {
+	public void add(AbstractParticle abstractParticle, Force force) {
 		
-		if(registrations.get(particle) == null){
+		if(registrations.get(abstractParticle) == null){
 			ArrayList<Force> forces = new ArrayList<Force>();
 			forces.add(force);
-			registrations.put(particle, forces);
+			registrations.put(abstractParticle, forces);
 		}
 		else
-			registrations.get(particle).add(force);
+			registrations.get(abstractParticle).add(force);
 	}
 
-	public void remove(Particle particle, Force force) {
-		ArrayList<Force> forces = registrations.get(particle);
+	public void remove(AbstractParticle abstractParticle, Force force) {
+		ArrayList<Force> forces = registrations.get(abstractParticle);
 		if(forces!=null){
 			forces.remove(force);
 			Force cancelForce = new Force (-force.x, -force.y, -force.z);
-			particle.addForce(cancelForce);
+			abstractParticle.addForce(cancelForce);
 		}	
 	}
 
-	public void removeAllForceFrom (Particle particle) {
-		ArrayList<Force> forces = registrations.get(particle);
+	public void removeAllForceFrom (AbstractParticle abstractParticle) {
+		ArrayList<Force> forces = registrations.get(abstractParticle);
 		if(forces!=null)
 			forces.clear();
-		particle.clearAccumulator();
+		abstractParticle.clearAccumulator();
 	}
 	
 	public void clear(){
 		registrations.clear();
 	}
 	
-	public void updateForce(Particle particle){
-		ArrayList<Force> forces = registrations.get(particle);
+	public void updateForce(AbstractParticle abstractParticle){
+		ArrayList<Force> forces = registrations.get(abstractParticle);
 		if(forces != null)
 			for (Force force: forces)
-				particle.addForce(force);
+				abstractParticle.addForce(force);
 	}
 	
 	public void updateAllForces(){
-		for (Entry<Particle, ArrayList<Force>> entry: registrations.entrySet()){
-			Particle particle = entry.getKey();
-			updateForce(particle);
+		for (Entry<AbstractParticle, ArrayList<Force>> entry: registrations.entrySet()){
+			AbstractParticle abstractParticle = entry.getKey();
+			updateForce(abstractParticle);
 		}
 	}
 

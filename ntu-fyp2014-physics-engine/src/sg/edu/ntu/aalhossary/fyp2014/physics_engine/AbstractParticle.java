@@ -1,5 +1,7 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine;
-public class Particle {
+
+
+public abstract class AbstractParticle {
 	protected Vector3D position;
 	protected Vector3D velocity;
 	protected Vector3D acceleration;
@@ -12,7 +14,7 @@ public class Particle {
 	protected Matrix4 transformMatrix;
 	protected double boundingRadius;
 
-	public Particle() {
+	public AbstractParticle() {
 		position = new Vector3D(0,0,0);
 		velocity = new Vector3D(0,0,0);
 		acceleration = new Vector3D(0,0,0);
@@ -22,7 +24,6 @@ public class Particle {
 		boundingRadius = 0;
 		orientation = new Quaternion(0,0,0,0);
 		rotation = new Vector3D(0,0,0);
-		
 	}
 
 	public Vector3D getPosition() {

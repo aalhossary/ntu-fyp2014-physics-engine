@@ -7,11 +7,11 @@ public class Contact {
 	private Vector3D _contactNormal;
 	private Vector3D _contactPoint;
 
-	public void updateVelocity(Particle aParticle, Vector3D aVelocity) {
+	public void updateVelocity(AbstractParticle aParticle, Vector3D aVelocity) {
 		throw new UnsupportedOperationException();
 	}
 
-	public void updateAcceleration(Particle aParticle, Vector3D aAcceleration) {
+	public void updateAcceleration(AbstractParticle aParticle, Vector3D aAcceleration) {
 		throw new UnsupportedOperationException();
 	}
 }

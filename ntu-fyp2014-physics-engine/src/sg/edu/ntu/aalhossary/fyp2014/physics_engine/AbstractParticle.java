@@ -12,7 +12,7 @@ public abstract class AbstractParticle {
 	protected Quaternion orientation;
 	protected Vector3D rotation;
 	protected Matrix4 transformMatrix;
-	protected double boundingRadius;
+	protected BoundingPrimitive boundingPrimitive;
 
 	public AbstractParticle() {
 		position = new Vector3D(0,0,0);
@@ -21,7 +21,6 @@ public abstract class AbstractParticle {
 		forceAccumulated = new Vector3D(0,0,0);
 		torqueAccumulated = new Vector3D(0,0,0);
 		inverseMass = 0;
-		boundingRadius = 0;
 		orientation = new Quaternion(0,0,0,0);
 		rotation = new Vector3D(0,0,0);
 	}
@@ -96,10 +95,6 @@ public abstract class AbstractParticle {
 		forceAccumulated.add(force);
 	}
 	
-	public void setBoundingRadius(double radius){
-		boundingRadius = radius;
-	}
-
 	public void addTorque(Vector3D aTorque) {
 		throw new UnsupportedOperationException();
 	}

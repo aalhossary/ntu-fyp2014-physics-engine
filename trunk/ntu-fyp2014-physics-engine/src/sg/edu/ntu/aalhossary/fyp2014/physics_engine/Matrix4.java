@@ -2,7 +2,7 @@ package sg.edu.ntu.aalhossary.fyp2014.physics_engine;
 import java.util.ArrayList;
 
 public class Matrix4 {
-	private ArrayList<Double> _data;
+	private double [] data = new double [12];
 	
 	public void add(Matrix4 aM) {
 		throw new UnsupportedOperationException();

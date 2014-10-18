@@ -1,4 +1,6 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine;
+// A Quaternion represents the orientation 
+// r is the angle, i,j,k are axis
 public class Quaternion {
 	public double r;
 	public double i;

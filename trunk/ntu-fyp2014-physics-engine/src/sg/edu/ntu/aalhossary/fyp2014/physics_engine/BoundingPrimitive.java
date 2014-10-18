@@ -1,5 +1,5 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine;
-public abstract class BoundingPrimitive {
+public interface BoundingPrimitive {
 
-	public abstract boolean overlap(BoundingPrimitive aBs);
+	public boolean overlap(BoundingPrimitive other);
 }

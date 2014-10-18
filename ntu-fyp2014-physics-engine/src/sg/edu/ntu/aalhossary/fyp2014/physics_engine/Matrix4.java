@@ -16,8 +16,10 @@ public class Matrix4 {
 		throw new UnsupportedOperationException();
 	}
 
-	public Vector3D transform(Vector3D aV) {
-		throw new UnsupportedOperationException();
+	public Vector3D transform(Vector3D v) {
+		return new Vector3D ( 	v.x*data[0] + v.y*data[1] + v.z*data[2] + data[3],
+								v.x*data[4] + v.y*data[5] + v.z*data[6] + data[7],
+								v.x*data[8] + v.y*data[9] + v.z*data[10] + data[11]);
 	}
 
 	public Matrix4 transform(Matrix4 aM) {

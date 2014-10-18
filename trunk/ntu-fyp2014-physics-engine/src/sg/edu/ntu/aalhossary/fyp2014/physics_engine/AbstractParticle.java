@@ -130,4 +130,8 @@ public abstract class AbstractParticle {
 	public void setOrientation(Quaternion aOrientation) {
 		this.orientation = aOrientation;
 	}
+	
+	public BoundingPrimitive getBoundingPrimitive(){
+		return this.boundingPrimitive;
+	}
 }

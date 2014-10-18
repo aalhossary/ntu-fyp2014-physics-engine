@@ -19,12 +19,12 @@ public class ElectricForce {
 		Vector3D distanceVector = new Vector3D (particle1.getPosition());
 		distanceVector.subtract(particle2.getPosition());
 		
-		// unit vector
-		distanceVector.normalize();
-		
 		// scalar distance
 		double scalar_distance = distanceVector.getMagnitude();
 		
+		// unit vector
+		distanceVector.normalize();
+				
 		if(scalar_distance == 0)
 			return new Force(0,0,0);
 		

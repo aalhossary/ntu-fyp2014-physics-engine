@@ -21,29 +21,68 @@ public class Matrix3 {
 		data[6] = v1.z; data[7]=v2.z;	data[8]=v3.z;
 	}
 	
-	public Matrix3 multiply(Matrix3 m){
-		return new Matrix3(
-			data[0]*m.data[0] + data[1]*m.data[3] + data[2]*m.data[6],
-	        data[0]*m.data[1] + data[1]*m.data[4] + data[2]*m.data[7],
-	        data[0]*m.data[2] + data[1]*m.data[5] + data[2]*m.data[8],
-	
-	        data[3]*m.data[0] + data[4]*m.data[3] + data[5]*m.data[6],
-	        data[3]*m.data[1] + data[4]*m.data[4] + data[5]*m.data[7],
-	        data[3]*m.data[2] + data[4]*m.data[5] + data[5]*m.data[8],
-	
-	        data[6]*m.data[0] + data[7]*m.data[3] + data[8]*m.data[6],
-	        data[6]*m.data[1] + data[7]*m.data[4] + data[8]*m.data[7],
-	        data[6]*m.data[2] + data[7]*m.data[5] + data[8]*m.data[8]
-	    );
+	// only for Junit Test
+	public double [] getData(){
+		return data;
 	}
 	
-	public Matrix3 multiply(double scale){
-		return new Matrix3(
-			data[0]*scale, data[1]* scale, data[2]*scale,
-			data[3]*scale, data[4]* scale, data[5]*scale,
-			data[6]*scale, data[7]* scale, data[8]*scale
-		);
+	@Override
+	public boolean equals(Object matrix3) {
+		double epsilon = 1e-6;
+		
+	    if (matrix3 == null) 
+	        return false;
+	    
+	    if (getClass() != matrix3.getClass()) 
+	        return false;
+	    
+	    final Matrix3 other = (Matrix3) matrix3;
+	    for(int i=0; i<9; i++) {
+	    	if(Math.abs(this.data[i]-other.data[i]) > epsilon)
+	    		return false;
+	    }
+	    return true;
 	}
+	
+	public Matrix3 multiplyAndReturn(Matrix3 m){
+		Matrix3 temp = new Matrix3();
+		temp = this;
+		temp.multiply(m);
+		return temp;
+	}
+	
+	public void multiply (Matrix3 m){
+		Matrix3 temp = new Matrix3();
+		temp.data[0] = data[0]*m.data[0] + data[1]*m.data[3] + data[2]*m.data[6];
+		temp.data[1] = data[0]*m.data[1] + data[1]*m.data[4] + data[2]*m.data[7];
+		temp.data[2] = data[0]*m.data[2] + data[1]*m.data[5] + data[2]*m.data[8];
+
+		temp.data[3] = data[3]*m.data[0] + data[4]*m.data[3] + data[5]*m.data[6];
+		temp.data[4] = data[3]*m.data[1] + data[4]*m.data[4] + data[5]*m.data[7];
+		temp.data[5] = data[3]*m.data[2] + data[4]*m.data[5] + data[5]*m.data[8];
+	
+		temp.data[6] = data[6]*m.data[0] + data[7]*m.data[3] + data[8]*m.data[6];
+		temp.data[7] = data[6]*m.data[1] + data[7]*m.data[4] + data[8]*m.data[7];
+		temp.data[8] = data[6]*m.data[2] + data[7]*m.data[5] + data[8]*m.data[8];
+		
+		for(int i=0; i<9; i++)
+			data[i] =  temp.data[i];
+	}
+	
+	public Matrix3 scaleAndReturn(double scale){
+		Matrix3 m = new Matrix3();
+		m = this;
+		m.scale(scale);
+		return m;
+	}
+	
+	public void scale(double scale){
+		data[0]*=scale; data[1]*= scale; data[2]*=scale;
+		data[3]*=scale; data[4]*= scale; data[5]*=scale;
+		data[6]*=scale; data[7]*= scale; data[8]*=scale;
+	}
+	
+
 	
 	public void add (Matrix3 m){
 		data[0] += m.data[0];	data[1] += m.data[1];	data[2] += m.data[2];

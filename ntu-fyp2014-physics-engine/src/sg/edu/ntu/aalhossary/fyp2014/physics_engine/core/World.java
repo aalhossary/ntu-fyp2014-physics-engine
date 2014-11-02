@@ -32,20 +32,6 @@ public class World {
 		Force ff = VdWForce.getVdWForce(q, p);
 		System.out.println(ff.print());
 		
-		Matrix3 m1 = new Matrix3(9,3,5,-6,-9,7,-1,-8,1);
-		
-		
-		Matrix3 m2 = m1.inverse();
-		m2 = m2.multiply(615);
-		
-		m1.invert();
-		m1 = m1.multiply(615);
-		
-		
-		
-		m1.print();
-		System.out.println();
-		m2.print();
 	}
 	
 	private static void printParticleStatus(AbstractParticle p){

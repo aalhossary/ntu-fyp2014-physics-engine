@@ -88,14 +88,28 @@ public abstract class AbstractParticle {
 
 	public void clearAccumulator() {
 		forceAccumulated.clear();
+		torqueAccumulated.clear();
 	}
 
 	public void addForce(Vector3D force) {
 		forceAccumulated.add(force);
 	}
 	
-	public void addTorque(Vector3D aTorque) {
-		throw new UnsupportedOperationException();
+	public void addForceAtPoint(Vector3D force, Vector3D point) {
+		
+		forceAccumulated.add(force);
+	    
+		// Convert to coordinates relative to center of mass.
+	    Vector3D dist = point;
+	    dist.subtract(position);
+	    
+	    Vector3D torque = new Vector3D();
+	    torque = dist.getCrossProduct(force);
+	    torqueAccumulated.add(torque);    
+	}
+	
+	public void addTorque(Vector3D torque) {
+		torqueAccumulated.add(torque);    
 	}
 
 	public void calculateTransformMatrix(Matrix4 aM, Vector3D aPosition, Quaternion aOrientation) {
@@ -106,13 +120,6 @@ public abstract class AbstractParticle {
 		throw new UnsupportedOperationException();
 	}
 
-	public void addForceAtPoint(Vector3D aForce, Vector3D aPoint) {
-		throw new UnsupportedOperationException();
-	}
-
-	public void addForceAtBodyPoint(Vector3D aForce, Vector3D aPoint) {
-		throw new UnsupportedOperationException();
-	}
 
 	public Vector3D getRotation() {
 		return this.rotation;

@@ -1,5 +1,6 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine.core;
 
+
 public class Contact {
 	private PotentialContact _potentialContact;
 	private double _penetration;

@@ -1,6 +1,7 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine.core;
 
-public abstract class AbstractParticle {
+public abstract class AbstractParticle implements sg.edu.ntu.aalhossary.fyp2014.common.Particle {
+
 	protected Vector3D position;
 	protected Vector3D velocity;
 	protected Vector3D acceleration;

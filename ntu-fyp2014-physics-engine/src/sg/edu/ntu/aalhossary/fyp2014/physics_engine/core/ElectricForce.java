@@ -1,5 +1,6 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine.core;
 
+
 public class ElectricForce {
 	private static final double COULOMB_CONSTANT = 8.987551787e+9;
 	

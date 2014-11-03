@@ -1,6 +1,6 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine.core;
 
-public class Atom extends AbstractParticle{
+public class Atom extends sg.edu.ntu.aalhossary.fyp2014.common.Atom{
 
 	public Atom(){
 		super();

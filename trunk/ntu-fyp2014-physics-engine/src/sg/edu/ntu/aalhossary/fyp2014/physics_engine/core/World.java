@@ -14,30 +14,50 @@ public class World {
 	public static void main (String[] args){
 		
 		
+		
 		machineEpsilon = calculateMachineEpsilon();
-		AbstractParticle p = new Atom();
-//		p.setMass(1);
-//		p.setVelocity(0, 2, 0);
-//		p.setAcceleration(0, 0, 0);
-		p.setPosition(0, 0, 4);
-	//	registry.add(p, new Force(0.0, -1.0, 0.0));
-	//	registry.add(p, new Force(0.0, -1.0, 0.0));
-	///	registry.updateAllForces();
+		AbstractParticle a1 = new Atom("011");	//covalent radius for Na
+		AbstractParticle a2 = new Atom("017");	//covalent radius for Cl
 		
-		AbstractParticle q = new Atom();
-		q.setPosition(0, 0, 0);
-		Force f = ElectricForce.getElectricForce(q, p);
-		System.out.println(f.print());
 		
-		Force ff = VdWForce.getVdWForce(q, p);
-		System.out.println(ff.print());
+		a1.setPosition(0, 0, 0);
+	//	a1.setVelocity(2e-13, 2e-13, 2e-13);
+		a1.setAcceleration(0, 0, 0);
+		// find a way to get oxidation state/ net charge
+		a1.setNetCharge(1);
+	
+		// actual is 564.02 pm
+		a2.setPosition(700e-12, 700e-12, 700e-12);
+		a2.setVelocity(0, 0, 0);
+		a2.setAcceleration(0, 0, 0);
+		a2.setNetCharge(-1);
+	
+		Vector3D eF = Force.getElectricForce(a1, a2) ;
+		System.out.println("Electric (Coulomb) Force between atoms is: " + eF.print());
+		registry.add(a1, eF);
+		registry.add(a2, eF.getNegativeVector());
+		
+	
+		System.out.println("Time \t Particle \t Position \t Velocity");
+		for(int i=0; i<9; i++){
+			registry.updateAllForces();
+			System.out.print(i + "\t");
+			a1.integrate(i);
+			a2.integrate(i);
+			System.out.print(" a1 \t\t");
+			printParticleStatus(a1);
+			System.out.print("\t a2 \t\t");
+			printParticleStatus(a2);
+			System.out.println();
+		}
+		
 		
 	}
 	
 	private static void printParticleStatus(AbstractParticle p){
-		System.out.println("Position: " + p.position.print());
-		System.out.println("Velocity: " + p.velocity.print());
-		System.out.println("Acceleration: " + p.acceleration.print());
+		System.out.println(p.position.print()+"\t");
+		//System.out.println(p.velocity.print());	
+		//System.out.println("Acceleration: " + p.acceleration.print());
 
 	}
 	

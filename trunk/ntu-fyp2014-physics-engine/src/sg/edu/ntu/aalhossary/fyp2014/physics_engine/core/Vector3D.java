@@ -1,5 +1,8 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine.core;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class Vector3D {
 	public double x;
 	public double y;
@@ -16,9 +19,28 @@ public class Vector3D {
 	public Vector3D(double x, double y, double z) {
 		this.x = x; this.y = y; this.z = z;
 	}
+	
+	@Override
+	public boolean equals(Object vector) {
+	    if (vector == null) 
+	        return false;
+	    
+	    if (getClass() != vector.getClass()) 
+	        return false;
+	    
+	    final Vector3D other = (Vector3D) vector;
+	    if(this.x != other.x || this.y != other.y || this.z != other.z)
+	    	return false;
+	    
+	    return true;
+	}
 
 	public void invert() {
 		x=-x; y=-y; z=-z;
+	}
+	
+	public Vector3D getNegativeVector(){
+		return new Vector3D(-x,-y,-z);
 	}
 
 	public void clear() {
@@ -85,6 +107,7 @@ public class Vector3D {
 	}
 	
 	public String print(){
-		return String.valueOf(x) + ", " + String.valueOf(y) + ", " + String.valueOf(z);
+		NumberFormat formatter = new DecimalFormat("0.000000E00");     
+		return String.valueOf(formatter.format(x)) + ", " + String.valueOf(formatter.format(y)) + ", " + String.valueOf(formatter.format(z));
 	}
 }

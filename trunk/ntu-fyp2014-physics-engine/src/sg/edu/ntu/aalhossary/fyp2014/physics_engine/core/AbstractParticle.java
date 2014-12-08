@@ -13,6 +13,7 @@ public abstract class AbstractParticle implements sg.edu.ntu.aalhossary.fyp2014.
 	protected Vector3D rotation;
 	protected Matrix4 transformMatrix;
 	protected BoundingPrimitive boundingPrimitive;
+	protected int netCharge;
 
 	public AbstractParticle() {
 		position = new Vector3D(0,0,0);
@@ -23,6 +24,7 @@ public abstract class AbstractParticle implements sg.edu.ntu.aalhossary.fyp2014.
 		inverseMass = 0;
 		orientation = new Quaternion(0,0,0,0);
 		rotation = new Vector3D(0,0,0);
+		netCharge = 0;
 	}
 
 	public Vector3D getPosition() {
@@ -140,5 +142,13 @@ public abstract class AbstractParticle implements sg.edu.ntu.aalhossary.fyp2014.
 	
 	public BoundingPrimitive getBoundingPrimitive(){
 		return this.boundingPrimitive;
+	}
+	
+	public void setNetCharge(int charge){
+		netCharge = charge;
+	}
+	
+	public int getNetCharge(){
+		return netCharge;
 	}
 }

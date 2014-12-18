@@ -1,6 +1,7 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine.core;
 
 
+
 public class Matrix4 {
 	private double [] data = new double [12];
 	
@@ -12,6 +13,10 @@ public class Matrix4 {
 		data [8] = data [9] = data [11] = 0;
 	}
 
+	public Matrix4(double data[]){
+		for(int i=0; i<12; i++)
+			this.data[i] = data[i];
+	}
 	/**
      * Returns a matrix which is this matrix multiplied by the given other matrix.
      */

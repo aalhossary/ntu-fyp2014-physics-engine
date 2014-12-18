@@ -107,7 +107,32 @@ public class Vector3D {
 	}
 	
 	public String print(){
-		NumberFormat formatter = new DecimalFormat("0.000000E00");     
-		return String.valueOf(formatter.format(x)) + ", " + String.valueOf(formatter.format(y)) + ", " + String.valueOf(formatter.format(z));
+		
+		String x_str = convertMetric(x);
+		String y_str = convertMetric(y);
+		String z_str = convertMetric(z);
+		return x_str + ", " + y_str + ", " + z_str;
+		//return String.valueOf(formatter.format(x)) + ", " + String.valueOf(formatter.format(y)) + ", " + String.valueOf(formatter.format(z));
+	}
+	
+	public String convertMetric(double i){
+		int exponent = (int)(Math.log10(i));
+		NumberFormat formatter = new DecimalFormat("0.00");
+		
+		if (exponent <-9)
+			return formatter.format(i*Math.pow(10, 12)) + "pm";
+			
+		
+		else if (exponent < -6)
+			return formatter.format(i*Math.pow(10, 9)) + "nm";
+	
+		else if (exponent < -3)
+			return formatter.format(i*Math.pow(10, 6)) + " μm";
+	
+		else if (exponent < 0)
+			return formatter.format(i*Math.pow(10, 3)) + "mm";
+		
+		return i + "m";
+		
 	}
 }

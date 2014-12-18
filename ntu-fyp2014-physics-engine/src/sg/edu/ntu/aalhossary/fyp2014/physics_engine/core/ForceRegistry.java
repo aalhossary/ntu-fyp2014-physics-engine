@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import sg.edu.ntu.aalhossary.fyp2014.common.AbstractParticle;
+
 public class ForceRegistry {
 	private HashMap<AbstractParticle, ArrayList<Vector3D>> registrations = new HashMap<AbstractParticle,ArrayList<Vector3D>>();
 	
@@ -22,6 +24,17 @@ public class ForceRegistry {
 			registrations.get(abstractParticle).add(force);
 	}
 
+	public void updateForce(AbstractParticle abstractParticle, Vector3D oldForce, Vector3D newForce) {
+		ArrayList<Vector3D> forces = registrations.get(abstractParticle);
+		if(forces!=null){
+			int index = forces.indexOf(oldForce);
+			forces.get(index).x = newForce.x;
+			forces.get(index).y = newForce.y;
+			forces.get(index).z = newForce.z;
+			
+		}
+	}
+	
 	public void remove(AbstractParticle abstractParticle, Vector3D force) {
 		ArrayList<Vector3D> forces = registrations.get(abstractParticle);
 		if(forces!=null){
@@ -42,17 +55,17 @@ public class ForceRegistry {
 		registrations.clear();
 	}
 	
-	public void updateForce(AbstractParticle abstractParticle){
+	public void applyForce(AbstractParticle abstractParticle){
 		ArrayList<Vector3D> forces = registrations.get(abstractParticle);
 		if(forces != null)
 			for (Vector3D force: forces)
 				abstractParticle.addForce(force);
 	}
 	
-	public void updateAllForces(){
+	public void applyForces(){
 		for (Entry<AbstractParticle, ArrayList<Vector3D>> entry: registrations.entrySet()){
 			AbstractParticle abstractParticle = entry.getKey();
-			updateForce(abstractParticle);
+			applyForce(abstractParticle);
 		}
 	}
 

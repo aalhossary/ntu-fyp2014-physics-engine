@@ -1,5 +1,7 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine.core;
 
+import sg.edu.ntu.aalhossary.fyp2014.common.AbstractParticle;
+
 
 public class Contact {
 	private PotentialContact _potentialContact;

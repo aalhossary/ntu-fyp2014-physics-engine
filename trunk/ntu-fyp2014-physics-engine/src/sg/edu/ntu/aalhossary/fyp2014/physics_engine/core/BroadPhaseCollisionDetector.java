@@ -5,6 +5,6 @@ public class BroadPhaseCollisionDetector {
 
 	private ArrayList<BoundingPrimitive> collisionObjects;
 	public void detectCollision(BoundingPrimitive aBm1, BoundingPrimitive aBm2) {
-		throw new UnsupportedOperationException();
+		
 	}
 }

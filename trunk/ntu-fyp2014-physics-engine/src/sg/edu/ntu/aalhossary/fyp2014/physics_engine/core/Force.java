@@ -1,5 +1,7 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine.core;
 
+import sg.edu.ntu.aalhossary.fyp2014.common.AbstractParticle;
+
 public class Force{
 
 	/**
@@ -51,11 +53,10 @@ public class Force{
 		double charge1 = CHARGE_IN_COULOMB * particle1.getNetCharge();
 		double charge2 = CHARGE_IN_COULOMB * particle2.getNetCharge();
 		
-		
 		// Finding distance between 2 particles
 		Vector3D distanceVector = new Vector3D (particle1.getPosition());
 		distanceVector.subtract(particle2.getPosition());
-
+	
 		// scalar distance
 		double scalar_distance = distanceVector.getMagnitude();
 		
@@ -77,8 +78,8 @@ public class Force{
 	 */
 	public static Vector3D getLennardJonesPotential(AbstractParticle particle1, AbstractParticle particle2){
 		
-		double epsilon = 0;
-		double bond_length = 0.28E-9;		// for NaCl
+		double epsilon = 0.1e-8;			// depth of potential well
+		double bond_length = 0.28E-9;		// bond length for NaCl
 		// bond length or vdw radius?
 
 		// Finding distance between 2 particles

@@ -1,20 +1,13 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine.core;
 
 
-public class BoundingCube implements BoundingPrimitive {
+public class BoundingCube extends BoundingPrimitive {
 
 	private double half_size;
-	private Vector3D centre;
 	
 	public BoundingCube(double half_size, Vector3D centre){
 		this.half_size = half_size;
-		centre = new Vector3D(centre);
-	}
-	
-	public void updateCentre (double x, double y, double z){
-		this.centre.x = x;
-		this.centre.y = y;
-		this.centre.z = z;
+		super.centre = new Vector3D(centre);
 	}
 	
 	public boolean overlap(BoundingPrimitive other) {

@@ -2,20 +2,13 @@ package sg.edu.ntu.aalhossary.fyp2014.physics_engine.core;
 
 
 // Bounding Sphere is to be used for atoms and molecules
-public class BoundingSphere implements BoundingPrimitive {
+public class BoundingSphere extends BoundingPrimitive {
 
 	private double radius;
-	private Vector3D centre;
 	
 	public BoundingSphere(double radius, Vector3D centre){
 		this.radius = radius;
-		this.centre = new Vector3D(centre);
-	}
-	
-	public void updateCentre (double x, double y, double z){
-		this.centre.x = x;
-		this.centre.y = y;
-		this.centre.z = z;
+		super.centre = new Vector3D(centre);
 	}
 	
 	public boolean overlap(BoundingPrimitive other) {
@@ -35,14 +28,7 @@ public class BoundingSphere implements BoundingPrimitive {
 			Vector3D temp = new Vector3D(centre);
 			temp.subtract(bSphere.getCentre());
 			double distanceSquared = temp.getSquaredMagnitude();
-			//return distanceSquared <= (this.radius + bSphere.getRadius()) * (this.radius + bSphere.getRadius());
-			
-			if(distanceSquared <= (this.radius + bSphere.getRadius()) * (this.radius + bSphere.getRadius())){
-				System.out.println("distance between: " + Math.sqrt(distanceSquared));
-				System.out.println("radii diff: " + (this.radius + bSphere.getRadius()));
-				return true;	
-				}
-			return false;
+			return distanceSquared <= (this.radius + bSphere.getRadius()) * (this.radius + bSphere.getRadius());
 		}
 		
 		else if(other instanceof BoundingBox){

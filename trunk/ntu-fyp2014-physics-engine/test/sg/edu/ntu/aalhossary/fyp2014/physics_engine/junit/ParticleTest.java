@@ -13,6 +13,7 @@ public class ParticleTest {
 
 	private AbstractParticle p1;
 	private AbstractParticle p2;
+	private final double COEFFICIENT_OF_RESTITUTION = 1;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -32,7 +33,7 @@ public class ParticleTest {
 
 	@Test
 	public void testCalculateVelocityChange() {
-		Vector3D new_v = p2.calculateVelocityChange(p1.getMass(), p1.getVelocity());
+		Vector3D new_v = p2.calculateVelocityChange(p1.getMass(), p1.getVelocity(),COEFFICIENT_OF_RESTITUTION);
 		Vector3D expected_v = new Vector3D(0.7867447076858267,0.7867447076858267,0.7867447076858267);
 		assertEquals(new_v,expected_v);
 	}

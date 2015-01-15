@@ -41,14 +41,6 @@ public class AtomTest {
 		assertEquals(bs.getRadius(), expected_radius, 1e-10);
 	}
 	
-	@Test
-	public void testElectricForce() {
-		Vector3D electricForce = Force.getElectricForce(a1, a2) ;
-		Vector3D expected = new Vector3D(0.15,0.15,0.15,-9);
-		double scale = Math.pow(10,-9);
-		assertEquals (electricForce.x, expected.x * scale, scale);
-		assertEquals (electricForce.x, expected.x * scale, scale);
-		assertEquals (electricForce.x, expected.x * scale, scale);
-	}
+	
 
 }

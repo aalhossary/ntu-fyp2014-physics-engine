@@ -17,8 +17,8 @@ public class ParticleTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		p1 = new Atom("011");
-		p2 = new Atom("017");
+		p1 = new Atom("Na");
+		p2 = new Atom("Cl");
 		
 		p1.setPosition(0, 0, 0);
 		p1.setVelocity(2, 2, 2);
@@ -33,8 +33,8 @@ public class ParticleTest {
 
 	@Test
 	public void testCalculateVelocityChange() {
-		Vector3D new_v = p2.calculateVelocityChange(p1.getMass(), p1.getVelocity(),COEFFICIENT_OF_RESTITUTION);
-		Vector3D expected_v = new Vector3D(0.7867447076858267,0.7867447076858267,0.7867447076858267);
+		Vector3D new_v = p2.calculateVelocityChange(p1, COEFFICIENT_OF_RESTITUTION);
+		Vector3D expected_v = new Vector3D(1.5734894153716534,1.5734894153716534,1.5734894153716534);
 		assertEquals(new_v,expected_v);
 	}
 	

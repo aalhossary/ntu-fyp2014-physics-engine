@@ -168,7 +168,7 @@ public class World {
 			System.out.println();
 			
 			// Collision Detection 
-			detector.detectCollision();    	 
+			detector.detectCollision(octTree, activeParticles, potentialContacts);    	 
 
 			// Resolve Collisions and set active particles
 			resolver.resolveContacts(potentialContacts);	

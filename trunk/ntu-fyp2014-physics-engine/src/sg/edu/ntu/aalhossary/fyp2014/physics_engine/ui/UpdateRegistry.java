@@ -1,29 +1,19 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine.ui;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.biojava.bio.structure.Structure;
 import org.biojava.bio.structure.io.PDBFileReader;
-import org.jmol.api.JmolViewer;
-import org.jmol.java.BS;
-import org.jmol.viewer.ActionManager;
 import org.jmol.viewer.DataManager;
 import org.jmol.viewer.Viewer;
 
 import sg.edu.ntu.aalhossary.fyp2014.common.AbstractParticle;
 import sg.edu.ntu.aalhossary.fyp2014.common.Atom;
-import sg.edu.ntu.aalhossary.fyp2014.common.Bond;
 import sg.edu.ntu.aalhossary.fyp2014.common.Model;
 import sg.edu.ntu.aalhossary.fyp2014.common.Molecule;
 import sg.edu.ntu.aalhossary.fyp2014.moleculeeditor.core.MoleculeEditor;
@@ -36,7 +26,6 @@ public class UpdateRegistry {
 	ToolPanel toolPanel;
 	List<Model> modelList;
 	DataManager dataMgr;
-	private ArrayList<Atom> selectedAtoms;
 	protected int dragMode;
 	
 	public UpdateRegistry(Viewer viewer, ToolPanel toolPanel, List<Model> models){

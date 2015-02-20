@@ -2,7 +2,6 @@ package sg.edu.ntu.aalhossary.fyp2014.physics_engine.junit;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,8 +12,7 @@ public class Matrix3Test {
 	private Matrix3 m1;
 	private Matrix3 m2;
 	private Matrix3 m3;
-	private double epsilon = 1e-8;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		m1 = new Matrix3(9,3,5,-6,-9,7,-1,-8,1);

@@ -1,7 +1,17 @@
 package sg.edu.ntu.aalhossary.fyp2014.physics_engine.core;
 
+import java.io.PrintStream;
+
+
+/**
+ * @author waiyan
+ * Initialization Class for the Physics Engine
+ * Periodic Table used for construction of the Atom
+ */
 public class Init {
 	public static double machineEpsilon;
+	public static PrintStream originalStream;
+	public static PrintStream dummyStream;
 	public static String [] periodicTable =  {
 		"H" , "He", "Li", "Be", "B" , "C" , "N" , "O" , "F" , "Ne",
 		"Na", "Mg", "Al", "Si", "P" , "S" , "Cl", "Ar", "K" , "Ca",
@@ -20,7 +30,6 @@ public class Init {
 	public static void init(){
 		machineEpsilon = calculateMachineEpsilon();
 	}
-	
 
 	private static double calculateMachineEpsilon(){
 		double machEps = 1.0;

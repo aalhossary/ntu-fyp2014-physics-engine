@@ -18,8 +18,8 @@ public class AtomTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		a1 = new Atom("011");
-		a2 = new Atom("017");
+		a1 = new Atom("Na");
+		a2 = new Atom("Cl");
 		
 		a1.setPosition(0, 0, 0);
 		a1.setVelocity(0, 0, 0);

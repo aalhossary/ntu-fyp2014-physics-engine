@@ -11,10 +11,16 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import sg.edu.ntu.aalhossary.fyp2014.common.AbstractParticle;
 import sg.edu.ntu.aalhossary.fyp2014.physics_engine.core.Units.DISTANCE;
 import sg.edu.ntu.aalhossary.fyp2014.physics_engine.core.Units.MASS;
 
-public class Atom extends sg.edu.ntu.aalhossary.fyp2014.common.Atom implements ActiveParticle{
+/**
+ * @author waiyan
+ * Handle creating of atoms
+ * Solve the acceleration, velocity and position of the atom before/after impact
+ */
+public class Atom extends sg.edu.ntu.aalhossary.fyp2014.common.Atom{
 
 	private double radius;
 	private boolean print_flag = false;
@@ -22,6 +28,11 @@ public class Atom extends sg.edu.ntu.aalhossary.fyp2014.common.Atom implements A
 	private int valence = 0;
 	private String atomicSymbol;
 	
+	/**
+	 * Create an atom given the atomic symbol
+	 * @param atomicSymbol
+	 * @throws Exception
+	 */
 	public Atom(String atomicSymbol) throws Exception{
 		super();
 		this.fetchAtomicData(atomicSymbol);
@@ -30,7 +41,11 @@ public class Atom extends sg.edu.ntu.aalhossary.fyp2014.common.Atom implements A
 		this.setNetCharge(valence);
 		this.boundingPrimitive = new BoundingSphere(radius, position);
 		this.atomicSymbol = atomicSymbol;
-		
+		this.setElementSymbol(atomicSymbol.toUpperCase());
+	}
+	
+	public Vector3D getForceAccumulated(){
+		return this.forceAccumulated;
 	}
 	
 	public void setNetCharge(int charge){
@@ -45,6 +60,9 @@ public class Atom extends sg.edu.ntu.aalhossary.fyp2014.common.Atom implements A
 		this.print_flag = flag;
 	}
 	
+	/**
+	 * Calculate acceleration, velocity and position of an atom after the given duration
+	 */
 	public void integrate(double duration) {
 			
 		// Calculate total acceleration without updating the original ( a = F /m )
@@ -54,6 +72,7 @@ public class Atom extends sg.edu.ntu.aalhossary.fyp2014.common.Atom implements A
 		// Update current velocity (v = a*t)
 		Vector3D initialVelocity = new Vector3D (velocity.x, velocity.y, velocity.z, velocity.metric);
 		velocity.addScaledVector(currentAcceleration, duration);
+		velocity.round();
 		
 		// Update current position (s = u*t + 0.5*a*t*t)
 		position.addScaledVector(initialVelocity, duration);
@@ -67,8 +86,14 @@ public class Atom extends sg.edu.ntu.aalhossary.fyp2014.common.Atom implements A
 	
 	}
 	
-	public Vector3D calculateVelocityChange(double other_mass, Vector3D other_velocity, double COEFFICIENT_OF_RESTITUTION){
+	/**
+	 * Calculate velocity change after impact
+	 */
+	public Vector3D calculateVelocityChange(AbstractParticle other, double COEFFICIENT_OF_RESTITUTION){
 		// v1 = u1*(m1-m2) + 2*m2*u2 / m1+m2
+		
+		double other_mass = other.getMass();
+		Vector3D other_velocity = other.getVelocity();
 		Vector3D temp = new Vector3D();
 		double mass = 1/this.inverseMass;
 		double metricDiff = other_velocity.metric - velocity.metric;
@@ -86,8 +111,16 @@ public class Atom extends sg.edu.ntu.aalhossary.fyp2014.common.Atom implements A
 		return temp;
 	}
 	
-	public String getAtomicSymbol() { return atomicSymbol;}
+	public String getAtomicSymbol() { 
+		return atomicSymbol;
+	}
 
+	/**
+	 * Fetch data from PeriodicTable.com 
+	 * Requires JSoup plugin
+	 * @param atomicSymbol
+	 * @throws Exception
+	 */
 	private void fetchAtomicData (String atomicSymbol) throws Exception{
 	
 		int index = Arrays.asList(Init.periodicTable).indexOf(atomicSymbol);
@@ -165,13 +198,15 @@ public class Atom extends sg.edu.ntu.aalhossary.fyp2014.common.Atom implements A
 			}
 		}
 		catch (IOException e){
-			System.out.println("ERROR: " + e.getMessage());
+			System.out.println("INTERNET CONNECTION ERROR WHILE CREATING ATOM  " + atomicSymbol);
+			System.out.println("Using Hydrogen as DEFAULT");
+			this.atomicSymbol = "H";
+			this.mass = 1.00794 * MASS.amu.value();
+			this.valence = 1;
+			this.atomicRadius = 53e-12;
+			this.covalentRadius = 37e-12;
+			this.vdwRadius = 120e-12;
 		}
 	}
-	
 
-	@Override
-	public float getStretchibility() {
-		return 0;
-	}
 }

@@ -2,14 +2,11 @@ package sg.edu.ntu.aalhossary.fyp2014.physics_engine.junit;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import sg.edu.ntu.aalhossary.fyp2014.physics_engine.core.Atom;
 import sg.edu.ntu.aalhossary.fyp2014.physics_engine.core.BoundingSphere;
-import sg.edu.ntu.aalhossary.fyp2014.physics_engine.core.Force;
-import sg.edu.ntu.aalhossary.fyp2014.physics_engine.core.Vector3D;
 
 public class AtomTest {
 

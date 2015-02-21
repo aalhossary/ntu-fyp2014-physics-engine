@@ -17,24 +17,15 @@ import sg.edu.ntu.aalhossary.fyp2014.common.Atom;
 import sg.edu.ntu.aalhossary.fyp2014.common.Model;
 import sg.edu.ntu.aalhossary.fyp2014.common.Molecule;
 import sg.edu.ntu.aalhossary.fyp2014.moleculeeditor.core.MoleculeEditor;
-import sg.edu.ntu.aalhossary.fyp2014.moleculeeditor.ui.ToolPanel;
 import sg.edu.ntu.aalhossary.fyp2014.physics_engine.core.Vector3D;
 import sg.edu.ntu.aalhossary.fyp2014.physics_engine.core.World;
 
 public class UpdateRegistry {
 	Viewer viewer;
-	ToolPanel toolPanel;
 	List<Model> modelList;
 	DataManager dataMgr;
 	protected int dragMode;
-	
-	public UpdateRegistry(Viewer viewer, ToolPanel toolPanel, List<Model> models){
-		this.viewer = viewer;
-		this.modelList = models;
-		this.toolPanel = toolPanel;
-		this.dataMgr = new DataManager();
-		this.dragMode = -1;
-	}
+
 	
 	public UpdateRegistry(Viewer viewer, List<Model> models){
 		this.viewer = viewer;
@@ -46,7 +37,6 @@ public class UpdateRegistry {
 	public UpdateRegistry(){
 		this.viewer = null;
 		this.modelList = new ArrayList<Model>();
-		this.toolPanel = null;
 		this.dataMgr = new DataManager();
 		this.dragMode = -1;
 	}

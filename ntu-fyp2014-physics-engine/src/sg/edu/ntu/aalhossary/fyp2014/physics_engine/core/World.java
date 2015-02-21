@@ -7,7 +7,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import sg.edu.ntu.aalhossary.fyp2014.common.AbstractParticle;
-import sg.edu.ntu.aalhossary.fyp2014.moleculeeditor.core.MoleculeEditor;
 import sg.edu.ntu.aalhossary.fyp2014.physics_engine.core.Units.*;
 import sg.edu.ntu.aalhossary.fyp2014.physics_engine.ui.MainWindow;
 
@@ -35,7 +34,6 @@ public class World {
 	public static NarrowCollisionDetector detector = new NarrowCollisionDetector();
 	public static ContactResolver resolver = new ContactResolver();
 
-	public static MoleculeEditor editor;
 	public static MainWindow window;
 	public static PrintStream originalStream;
 	public static PrintStream dummyStream;
@@ -73,7 +71,7 @@ public class World {
 		a1.setVelocity(0, 0, 0);
 		a1.setNetCharge(1);		// find a way to get oxidation state/ net charge
 		
-		a2.setPosition(2e-10, 2e-10, 2e-10);
+		a2.setPosition(3e-10, 3e-10, 3e-10);
 		a2.setVelocity(0, 0, 0);
 		a2.setNetCharge(-1);
 		
@@ -150,7 +148,7 @@ public class World {
 		while(true) {
 			//checkForActiveParticles();
 			// Applying Forces
-			registry.updateAllForces();
+			registry.updateAllForces(activeParticles);
 					
 			for(AbstractParticle particle: activeParticles){
 				particle.integrate(i*time_metric);	

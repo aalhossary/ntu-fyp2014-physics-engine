@@ -45,8 +45,8 @@ public class CollisionDetectionTest {
 		
 		assertEquals(expectedContacts.size(), actualContacts.size());
 		for (int i=0; i< expectedContacts.size(); i++) {
-			assertEquals(expectedContacts.get(i)[0], expectedContacts.get(i)[0]);
-			assertEquals(expectedContacts.get(i)[1], expectedContacts.get(i)[1]);
+			assertEquals(expectedContacts.get(i)[0], actualContacts.get(i)[0]);
+			assertEquals(expectedContacts.get(i)[1], actualContacts.get(i)[1]);
 		}
 	}
 
